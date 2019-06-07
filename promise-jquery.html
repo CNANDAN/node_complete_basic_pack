@@ -1,0 +1,34 @@
+
+<!--achieving promise using jquery ajax  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ajax</title>
+</head>
+<body>
+<input type="button" name="ajax" id="ajax" value="button">
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+            $('#ajax').click(function () {
+	  			$.ajax({
+                        type: 'GET',
+                        url: 'http://test_url/1.php',
+                        }).then(data =>{
+                        	console.log(data);
+                        	return $.ajax({
+                        	type: 'GET',
+                        	url: 'http://192.168.19.99:8080/2.php',
+                        }).then( anotherData => {
+                        		console.log(anotherData);
+                        	});
+                        }).catch(err => {
+                        	console.log("some err occured "+ err );
+                        });
+	  			});
+        })
+</script>
